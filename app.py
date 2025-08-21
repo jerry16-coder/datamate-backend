@@ -11,6 +11,16 @@ import tempfile
 app = Flask(__name__)
 CORS(app)
 
+# ✅ Root endpoint (for testing in browser)
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"status": "ok", "message": "DataMate API is live 🚀"})
+
+# ✅ Health check endpoint
+@app.route("/api/health", methods=["GET"])
+def health():
+    return jsonify({"status": "healthy", "message": "DataMate Analysis API is running"})
+
 # Configure upload folder
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'csv', 'xlsx', 'xls'}
